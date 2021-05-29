@@ -1,4 +1,5 @@
 #pragma once
+#include <thread>
 #include <concrt.h>
 
 struct node {
@@ -11,10 +12,10 @@ class thrsafe_stack {
 private:
     node* head;
     int count;
-    concurrency::critical_section& cs;
+    concurrency::critical_section cs;
 
 public:
-    thrsafe_stack(concurrency::critical_section& cs);
+    thrsafe_stack();
     void push(int value);
     int pop();
     bool pop(int& out);
